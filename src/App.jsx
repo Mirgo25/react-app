@@ -1,5 +1,6 @@
 import './App.css';
 import Button from './components/Button/Button';
+import CardButton from './components/CardButton/CardButton';
 import JournalItem from './components/JournalItem/JournalItem';
 
 function App() {
@@ -20,16 +21,21 @@ function App() {
 			<h1>Header</h1>
 			<p>Some text</p>
 			<Button />
-			<JournalItem
-				title={data[0].title}
-				date={data[0].date}
-				text={data[0].text}
-			/>
-			<JournalItem
-				title={data[1].title}
-				date={data[1].date}
-				text={data[1].text}
-			/>
+			<CardButton>New memory</CardButton>
+			<CardButton>
+				<JournalItem
+					title={data[0].title}
+					date={data[0].date}
+					text={data[0].text}
+				/>
+			</CardButton>
+			<CardButton>
+				<JournalItem
+					title={data[1].title}
+					date={data[1].date}
+					text={data[1].text}
+				/>
+			</CardButton>
 		</>
 	);
 }
