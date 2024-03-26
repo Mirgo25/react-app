@@ -22,12 +22,12 @@ function App() {
       <Button />
       <JournalItem
         title={data[0].title}
-        date={data[0].date.toString()}
+        date={data[0].date}
         text={data[0].text}
       />
       <JournalItem
         title={data[1].title}
-        date={data[1].date.toString()}
+        date={data[1].date}
         text={data[1].text}
       />
     </>
