@@ -31,12 +31,10 @@ function App() {
 				text: item.text,
 				title: item.title,
 				date: new Date(item.date),
-				id: Math.max(...oldItems.map(({ id }) => id)) + 1
+				id: oldItems.length ? Math.max(...oldItems.map(({ id }) => id)) + 1 : 1
 			}
 		]);
 	};
-
-
 
 	return (
 		<div className="app">
