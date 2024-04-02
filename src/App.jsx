@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Header from './components/Header/Header';
 import JournalAddButton from './components/JournalAddButton/JournalAddButton';
 import JournalForm from './components/JournalForm/JournalForm';
@@ -37,7 +37,7 @@ function App() {
 	};
 
 	return (
-		<div className="app">
+		<div className={styles.app}>
 			<LeftPanel>
 				<Header />
 				<JournalAddButton />

@@ -1,6 +1,6 @@
 import CardButton from '../CardButton/CardButton';
 import JournalItem from '../JournalItem/JournalItem';
-import './JournalList.css';
+// import styles from './JournalList.module.css';
 
 function JournalList({ items }) {
 	if (!items.length) return <p>There are no items yet. Add some</p>;

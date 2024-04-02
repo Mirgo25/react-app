@@ -1,8 +1,10 @@
-import './CardButton.css';
+import styles from './CardButton.module.css';
+import cn from 'classnames';
 
 function CardButton({ children, className }) {
-	const cl = 'card-button' + (className ? ' ' + className : '');
-	return <button className={cl}>{children}</button>;
+	return (
+		<button className={cn(styles['card-button'], className)}>{children}</button>
+	);
 }
 
 export default CardButton;
