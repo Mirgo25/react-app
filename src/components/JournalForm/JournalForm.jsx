@@ -44,12 +44,13 @@ function JournalForm({ onSubmit }) {
 			<input
 				type="text"
 				name="title"
-				style={{ border: !formValidState.title ? '1px solid red' : undefined }}
+				// style={{ border: !formValidState.title ? '1px solid red' : undefined }}
+				className={`input ${!formValidState.title ? 'invalid' : ''}`}
 			/>
 			<input
 				type="date"
 				name="date"
-				style={{ border: !formValidState.date ? '1px solid red' : undefined }}
+				className={`input ${!formValidState.date ? 'invalid' : ''}`}
 			/>
 			<input type="text" name="tag" />
 			<textarea
@@ -57,7 +58,8 @@ function JournalForm({ onSubmit }) {
 				id=""
 				cols="30"
 				rows="10"
-				style={{ border: !formValidState.text ? '1px solid red' : undefined }}
+				// style={{ border: !formValidState.text ? '1px solid red' : undefined }}
+				className={`input ${!formValidState.text ? 'invalid' : ''}`}
 			></textarea>
 			<Button text="Save" />
 		</form>
