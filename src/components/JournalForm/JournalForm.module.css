@@ -40,13 +40,6 @@
 	align-items: center;
 }
 
-.input-date {
-	font-family: var(--font-family);
-	font-weight: 600;
-	font-size: 14px;
-	color: rgba(255, 255, 255, 0.6);
-}
-
 .invalid {
 	border: 1px solid red;
 	background: rgba(141, 33, 33, 0.675);
