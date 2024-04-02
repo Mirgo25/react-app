@@ -42,28 +42,45 @@ function JournalForm({ onSubmit }) {
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
-			<input
-				type="text"
-				name="title"
-				// style={{ border: !formValidState.title ? '1px solid red' : undefined }}
-				// className={`${styles.input} ${
-				// 	!formValidState.title ? styles.invalid : ''
-				// }`}
-				className={cn(styles.input, {
-					[styles.invalid]: !formValidState.title
-				})}
-			/>
-			<input
-				type="date"
-				name="date"
-				// className={`${styles.input} ${
-				// 	!formValidState.date ? styles.invalid : ''
-				// }`}
-				className={cn(styles.input, {
-					[styles.invalid]: !formValidState.date
-				})}
-			/>
-			<input type="text" name="tag" />
+			<div>
+				<input
+					type="text"
+					name="title"
+					// style={{ border: !formValidState.title ? '1px solid red' : undefined }}
+					// className={`${styles.input} ${
+					// 	!formValidState.title ? styles.invalid : ''
+					// }`}
+					className={cn(styles['input-title'], {
+						[styles.invalid]: !formValidState.title
+					})}
+				/>
+				{/* <img src="/archive.svg" /> */}
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="date" className={styles['form-label']}>
+					<img src="/calendar.svg" alt="Calendar icon" />
+					<span>Date</span>
+				</label>
+				<input
+					id="date"
+					type="date"
+					name="date"
+					// className={`${styles.input} ${
+					// 	!formValidState.date ? styles.invalid : ''
+					// }`}
+					className={cn(styles.input, {
+						[styles.invalid]: !formValidState.date
+					})}
+				/>
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="tag" className={styles['form-label']}>
+					<img src="/folder.svg" alt="Folder icon" />
+					<span>Tags</span>
+				</label>
+				<input type="text" name="tag" id="tag" className={styles.input} />
+			</div>
+
 			<textarea
 				name="text"
 				id=""
