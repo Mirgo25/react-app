@@ -15,7 +15,6 @@ function JournalForm({ onSubmit }) {
 	useEffect(() => {
 		if (!(formValidState.date && formValidState.text && formValidState.title)) {
 			const timerId = setTimeout(() => {
-				console.log('Clear red!');
 				setFormValidState(INITIAL_STATE);
 			}, 2000);
 
