@@ -22,14 +22,24 @@ function JournalForm({ onSubmit }) {
 	}, [isValid]);
 
 	useEffect(() => {
-		if (isFormReadyToSubmit) onSubmit(values);
+		if (isFormReadyToSubmit) {
+			onSubmit(values);
+			dispatchForm({ type: 'CLEAR' });
+		}
 	}, [isFormReadyToSubmit]);
 
 	const addJournalItem = (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProps = Object.fromEntries(formData);
-		dispatchForm({ type: 'SUBMIT', payload: formProps });
+		dispatchForm({ type: 'SUBMIT' });
+	};
+
+	const setFormValue = (e) => {
+		dispatchForm({
+			type: 'SET_VALUE',
+			payload: {
+				[e.target.name]: e.target.value
+			}
+		});
 	};
 
 	return (
@@ -38,6 +48,7 @@ function JournalForm({ onSubmit }) {
 				<input
 					type="text"
 					name="title"
+					value={values.title}
 					// style={{ border: !formValidState.title ? '1px solid red' : undefined }}
 					// className={`${styles.input} ${
 					// 	!formValidState.title ? styles.invalid : ''
@@ -45,6 +56,7 @@ function JournalForm({ onSubmit }) {
 					className={cn(styles['input-title'], {
 						[styles.invalid]: !isValid.title
 					})}
+					onChange={setFormValue}
 				/>
 				{/* <img src="/archive.svg" /> */}
 			</div>
@@ -57,12 +69,14 @@ function JournalForm({ onSubmit }) {
 					id="date"
 					type="date"
 					name="date"
+					value={values.date}
 					// className={`${styles.input} ${
 					// 	!formValidState.date ? styles.invalid : ''
 					// }`}
 					className={cn(styles.input, {
 						[styles.invalid]: !isValid.date
 					})}
+					onChange={setFormValue}
 				/>
 			</div>
 			<div className={styles['form-row']}>
@@ -70,7 +84,14 @@ function JournalForm({ onSubmit }) {
 					<img src="/folder.svg" alt="Folder icon" />
 					<span>Tags</span>
 				</label>
-				<input type="text" name="tag" id="tag" className={styles.input} />
+				<input
+					type="text"
+					name="tag"
+					id="tag"
+					value={values.tag}
+					className={styles.input}
+					onChange={setFormValue}
+				/>
 			</div>
 
 			<textarea
@@ -78,6 +99,7 @@ function JournalForm({ onSubmit }) {
 				id=""
 				cols="30"
 				rows="10"
+				value={values.post}
 				// style={{ border: !formValidState.post ? '1px solid red' : undefined }}
 				// className={`${styles.input} ${
 				// 	!formValidState.post ? styles.invalid : ''
@@ -85,6 +107,7 @@ function JournalForm({ onSubmit }) {
 				className={cn(styles.input, {
 					[styles.invalid]: !isValid.post
 				})}
+				onChange={setFormValue}
 			></textarea>
 			<Button text="Save" />
 		</form>
