@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import Button from '../Button/Button';
 import styles from './JournalForm.module.css';
 import cn from 'classnames';
@@ -7,9 +7,27 @@ import { INITIAL_STATE, formReducer } from './JournalForm.state';
 function JournalForm({ onSubmit }) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const { isValid, isFormReadyToSubmit, values } = formState;
+	const titleRef = useRef();
+	const dateRef = useRef();
+	const postRef = useRef();
+
+	const focusError = (isValid) => {
+		switch (true) {
+		case !isValid.title:
+			titleRef.current.focus();
+			break;
+		case !isValid.date:
+			dateRef.current.focus();
+			break;
+		case !isValid.post:
+			postRef.current.focus();
+			break;
+		}
+	};
 
 	useEffect(() => {
 		if (!(isValid.date && isValid.post && isValid.title)) {
+			focusError(isValid);
 			const timerId = setTimeout(() => {
 				dispatchForm({ type: 'RESET_VALIDITY' });
 			}, 2000);
@@ -49,6 +67,7 @@ function JournalForm({ onSubmit }) {
 					type="text"
 					name="title"
 					value={values.title}
+					ref={titleRef}
 					// style={{ border: !formValidState.title ? '1px solid red' : undefined }}
 					// className={`${styles.input} ${
 					// 	!formValidState.title ? styles.invalid : ''
@@ -70,6 +89,7 @@ function JournalForm({ onSubmit }) {
 					type="date"
 					name="date"
 					value={values.date}
+					ref={dateRef}
 					// className={`${styles.input} ${
 					// 	!formValidState.date ? styles.invalid : ''
 					// }`}
@@ -100,6 +120,7 @@ function JournalForm({ onSubmit }) {
 				cols="30"
 				rows="10"
 				value={values.post}
+				ref={postRef}
 				// style={{ border: !formValidState.post ? '1px solid red' : undefined }}
 				// className={`${styles.input} ${
 				// 	!formValidState.post ? styles.invalid : ''
