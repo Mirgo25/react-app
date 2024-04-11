@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 import styles from './JournalForm.module.css';
 import cn from 'classnames';
 import { INITIAL_STATE, formReducer } from './JournalForm.state';
+import Input from '../Input/Input';
 
 function JournalForm({ onSubmit }) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
@@ -63,7 +64,7 @@ function JournalForm({ onSubmit }) {
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div>
-				<input
+				<Input
 					type="text"
 					name="title"
 					value={values.title}
@@ -72,9 +73,11 @@ function JournalForm({ onSubmit }) {
 					// className={`${styles.input} ${
 					// 	!formValidState.title ? styles.invalid : ''
 					// }`}
-					className={cn(styles['input-title'], {
-						[styles.invalid]: !isValid.title
-					})}
+					// className={cn(styles['input-title'], {
+					// 	[styles.invalid]: !isValid.title
+					// })}
+					isValid={isValid.title}
+					appearance="title"
 					onChange={setFormValue}
 				/>
 				{/* <img src="/archive.svg" /> */}
@@ -84,7 +87,7 @@ function JournalForm({ onSubmit }) {
 					<img src="/calendar.svg" alt="Calendar icon" />
 					<span>Date</span>
 				</label>
-				<input
+				<Input
 					id="date"
 					type="date"
 					name="date"
@@ -93,9 +96,10 @@ function JournalForm({ onSubmit }) {
 					// className={`${styles.input} ${
 					// 	!formValidState.date ? styles.invalid : ''
 					// }`}
-					className={cn(styles.input, {
-						[styles.invalid]: !isValid.date
-					})}
+					// className={cn(styles.input, {
+					// 	[styles.invalid]: !isValid.date
+					// })}
+					isValid={isValid.date}
 					onChange={setFormValue}
 				/>
 			</div>
@@ -104,12 +108,12 @@ function JournalForm({ onSubmit }) {
 					<img src="/folder.svg" alt="Folder icon" />
 					<span>Tags</span>
 				</label>
-				<input
+				<Input
 					type="text"
 					name="tag"
 					id="tag"
 					value={values.tag}
-					className={styles.input}
+					// className={styles.input}
 					onChange={setFormValue}
 				/>
 			</div>
